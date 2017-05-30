@@ -38,9 +38,8 @@ def createDateTimeFigure(repoString):
 
     p = figure(title="commit size over time", x_axis_label='date of commit', y_axis_label='size of commit', x_axis_type="datetime")
 
-    p.line(x, y, legend="tensorflow", line_width=2, line_color="blue")
-
+    p.line(x, y, legend=repoString, line_width=2, line_color="blue")
 
     show(p)
 
-#createDateTimeFigure("tensorflow/tensorflow")
+createDateTimeFigure("tensorflow/tensorflow")
