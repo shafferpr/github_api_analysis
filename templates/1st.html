@@ -1,13 +1,26 @@
 <!doctype html>
 <title>Github Data</title>
-<link rel=stylesheet type=text/css href='{{ url_for('static',filename='style_lulu.css')}}'>
+
+<head>
+<link
+    href="http://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.css"
+    rel="stylesheet" type="text/css">
+<link
+    href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.5.min.css"
+    rel="stylesheet" type="text/css">
+
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-0.12.5.min.js"></script>
+<script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.5.min.js"></script>
+
+</head>
+
 <div class=page>
   <h1>size of github commits vs time</h1>
   <div class=metanav>
 
-    <div class=metanav>
-      <object type="text/html" data="/static/plot.html" width="800" height="800"></object>
-    </div>    
+    {{ script|safe }}
+    {{ div|safe }}
+
     <h1>from github</h1>
     <form id='anything' method='post' action='/next' >
       <p>
@@ -15,5 +28,6 @@
       </p>
     </form>
   </div>
+
 </div>
 </html>
