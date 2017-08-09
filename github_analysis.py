@@ -10,10 +10,12 @@ import math
 from bokeh.plotting import figure, output_file, show
 from dateutil.parser import parse
 
+token=os.environ['github_auth_token']
+
 def createDateTimeFigure(repoString):
     payload = {}
 
-    r=requests.get('https://api.github.com/repos/'+repoString+'/commits', auth=('shafferpr@gmail.com','chem1633'), params=payload)
+    r=requests.get('https://api.github.com/repos/'+repoString+'/commits', auth=(token,''), params=payload)
 
     myList = []
 
