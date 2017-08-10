@@ -7,12 +7,13 @@ from gql.transport.requests import RequestsHTTPTransport
 
 token=os.environ['github_auth_token']
 
-def create_connection_dictionary:
-    qu_string= 'query{ organization(login: "Facebook") { repositories(first: 10, orderBy: {field: CREATED_AT, direction: DESC}) { edges{ node{ name mentionableUsers(first: 10) { edges { node { contributedRepositories(first: 5){ edges{ node{ name } } } } } } } } } } }'
+def create_connection_dictionary():
+    qu_string= 'query{ organization(login: "Facebook") { repositories(first: 5, orderBy: {field: CREATED_AT, direction: DESC}) { edges{ node{ name mentionableUsers(first: 10) { edges { node { contributedRepositories(first: 5){ edges{ node{ name } } } } } } } } } } }'
     data={"query" : qu_string}
 
     r=requests.post('https://api.github.com/graphql', json=data, auth=(token, ''))
-
+    all_data=pd.DataFrame.from_dict(r.json())
+    list_temp=all_data['data']['organization']['repositories']['edges']
     listOfNames=[item['node']['name'] for item in list_temp]
 
 
@@ -40,4 +41,6 @@ def create_connection_dictionary:
             links.append(individual_dictionary2)
 
     full_dictionary={"nodes": nodes, "links": links}
+    with open('./static/connections.json', 'w') as fp:
+        json.dump(full_dictionary, fp)
     return json.dumps(full_dictionary)

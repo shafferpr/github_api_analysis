@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request,redirect
-from github_analysis import createDateTimeFigure
+#from github_analysis import createDateTimeFigure
 from bokeh.embed import components
 from github_analysis2 import create_connection_dictionary
 
@@ -14,14 +14,14 @@ def index():
     # do not need to be the same.
     if request.method == 'GET':
         #return render_template('homepage.html')
-        script = create_connection_dictionary()
-        return render_template('index.html', script=script)
+        #script = create_connection_dictionary()
+        return render_template('index.html')
     else:
         #request was a post
         app.vars['repository']=request.form['repository']
-        plot = createDateTimeFigure(app.vars['repository'])
-        script, div = components(plot)
-        return render_template('1st.html', script=script, div=div)
+        #plot = createDateTimeFigure(app.vars['repository'])
+        #script, div = components(plot)
+        #return render_template('1st.html', script=script, div=div)
     #return redirect('/next')
     #return render_template('layout_lulu.html', num=1,question='How many eyes do you have?', ans1='1',ans2='2',ans3='3')
 
