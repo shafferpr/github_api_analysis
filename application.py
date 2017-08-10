@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request,redirect
 from github_analysis import createDateTimeFigure
 from bokeh.embed import components
+from github_analysis2 import create_connection_dictionary
 
 app = Flask(__name__)
 
@@ -11,8 +12,10 @@ def index():
     # this is a comment, just like in Python
     # note that the function name and the route argument
     # do not need to be the same.
-    if request.method == 'GET':  
-        return render_template('homepage.html')
+    if request.method == 'GET':
+        #return render_template('homepage.html')
+        script = create_connection_dictionary()
+        return render_template('index.html', script=script)
     else:
         #request was a post
         app.vars['repository']=request.form['repository']
