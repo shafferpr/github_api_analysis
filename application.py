@@ -1,7 +1,7 @@
 from flask import Flask,render_template,request,redirect
 #from github_analysis import createDateTimeFigure
 from bokeh.embed import components
-from github_analysis2 import create_connection_dictionary, create_connection_dictionary2
+from github_analysis2 import create_connection_dictionary, create_connection_dictionary2, create_user_connection_dictionary
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def index():
         print (app.vars['organization'])
         #plot = createDateTimeFigure(app.vars['repository'])
         #script, div = components(plot)
-        json_string = create_connection_dictionary2(app.vars['organization'])
+        json_string = create_user_connection_dictionary(app.vars['organization'])
         return render_template('index4.html', json_string=json_string)
     #return redirect('/next')
     #return render_template('layout_lulu.html', num=1,question='How many eyes do you have?', ans1='1',ans2='2',ans3='3')
