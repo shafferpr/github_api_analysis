@@ -35,7 +35,7 @@ def create_connection_dictionary(org):
     print (qu_string)
     data={"query" : qu_string}
 
-    r=requests.post('https://api.github.com/graphql', json=data, auth=('shafferpr@gmail.com', 'chem1633'))
+    r=requests.post('https://api.github.com/graphql', json=data, auth=(token,''))
 
     all_data=pd.DataFrame.from_dict(r.json())
     list_temp=all_data['data']['organization']['repositories']['edges']
@@ -93,7 +93,7 @@ def create_connection_dictionary2(org):
 
     data={"query" : qu_string}
 
-    r=requests.post('https://api.github.com/graphql', json=data, auth=('shafferpr@gmail.com', 'chem1633'))
+    r=requests.post('https://api.github.com/graphql', json=data, auth=(token,''))
 
     all_data=pd.DataFrame.from_dict(r.json())
     list_temp=all_data['data']['organization']['repositories']['edges']
@@ -156,7 +156,7 @@ def create_user_connection_dictionary(org):
                       } ''' %(org)
 
     data={"query" : qu_string}
-    r=requests.post('https://api.github.com/graphql', json=data, auth=('shafferpr@gmail.com', 'chem1633'))
+    r=requests.post('https://api.github.com/graphql', json=data, auth=(token,''))
     all_data=pd.DataFrame.from_dict(r.json())
     print(all_data)
     list_temp=all_data['data']['organization']['members']['edges']
